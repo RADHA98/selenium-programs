@@ -24,37 +24,41 @@ public class DialogPage {
 	By add = By.xpath("//*[@id=\"dialog1\"]/div[2]/button[2]");
 	By cancelbtn = By.xpath("//*[@id=\"dialog1\"]/div[2]/button[3]");
 
-	public WebElement GetAddressButton() {
+	
+	public WebElement getAddressButton() {
 		return driver.findElement(addressbtn);
+		
 	}
 
-	public WebElement GetAddDelivaryModal() {
+	public WebElement getAddDelivaryModal() {
 		return driver.findElement(AddDeliveryAddressmodel);
 	}
 
-	public WebElement EnterStreet() {
+	public WebElement enterStreet() {
 		return driver.findElement(street);
 	}
 
-	public WebElement EnterCity() {
+	public WebElement enterCity() {
 		return driver.findElement(city);
 	}
 
-	public WebElement EnterState() {
+	public WebElement enterState() {
 		return driver.findElement(state);
 	}
 
-	public WebElement EnterPin() {
+	public WebElement enterPin() {
 		return driver.findElement(pin);
 	}
 
-	public WebElement EnterSpecialInstructions() {
+	public WebElement enterSpecialInstructions() {
 		return driver.findElement(specialinstructions);
 	}
 
-	public WebElement GetCancelBtn() {
+	public WebElement getCancelBtn() {
 		return driver.findElement(cancelbtn);
 	}
+
+	
 }
 
 //		public void ClickOnaddbtn() {

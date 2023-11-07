@@ -16,8 +16,8 @@ import modelaccessibletest.modelaccessibletest.WaiMethod;
 public class DialogTest {
 
 	private WebDriver driver;
-	DialogPage DialogPage = new DialogPage(driver);
-	AssertDialog AssertDialog= new AssertDialog(driver);
+	DialogPage dialogPage = new DialogPage(driver);
+	AssertDialog assertDialog= new AssertDialog(driver);
 	
 	 @BeforeTest
 	    public void setUp() {
@@ -25,17 +25,17 @@ public class DialogTest {
 	        driver = new ChromeDriver();
 	        driver.manage().window().maximize();
 	        driver.get("https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/");
-	        DialogPage = new DialogPage(driver);
-	        AssertDialog = new AssertDialog(driver);
+	        dialogPage = new DialogPage(driver);
+	        assertDialog = new AssertDialog(driver);
 	    }
 
 	@Test(priority = 1)
 	public void testModalWithRole() {
-		WebElement addressbtn = DialogPage .GetAddressButton();
+		WebElement addressbtn = dialogPage.getAddressButton();
 		addressbtn.click();
-		WebElement addDelivaryModal = DialogPage .GetAddDelivaryModal();
-		AssertDialog.checkRolesandAttribute(addDelivaryModal,"dialog","role is not match","role");
-		WebElement cancelbtn = DialogPage.GetCancelBtn();
+		WebElement addDelivaryModal =  dialogPage .getAddDelivaryModal();
+		assertDialog.checkRolesandAttribute(addDelivaryModal,"dialog","role is not match","role");
+		WebElement cancelbtn =  dialogPage.getCancelBtn();
 		cancelbtn.click();
 	}
 
@@ -43,35 +43,35 @@ public class DialogTest {
 	@Test(priority = 2)
 	public void checkModelWithAriaLabelledBy() {
 		
-		WebElement addressbtn =DialogPage.GetAddressButton();
+		WebElement addressbtn = dialogPage.getAddressButton();
 		addressbtn.click();
-		WebElement checkModelAriaLabelledBy = DialogPage.GetAddDelivaryModal();
-		AssertDialog.checkRolesandAttribute(checkModelAriaLabelledBy,"dialog1_label","Element's aria-labelledby attribute is incorrect","aria-labelledby");
-		WebElement cancelbtn = DialogPage.GetCancelBtn();
+		WebElement checkModelAriaLabelledBy = dialogPage.getAddDelivaryModal();
+		assertDialog.checkRolesandAttribute(checkModelAriaLabelledBy,"dialog1_label","Element's aria-labelledby attribute is incorrect","aria-labelledby");
+		WebElement cancelbtn =  dialogPage.getCancelBtn();
 		cancelbtn.click();
 	}		
 
 		@Test(priority = 3)
 		public void closeModelWithEscapeKey() {
 			
-			WebElement addDeliveryCloseModal = DialogPage.GetAddDelivaryModal();
+			WebElement addDeliveryCloseModal =  dialogPage.getAddDelivaryModal();
 
-			WebElement addressbtn = DialogPage.GetAddressButton();
+			WebElement addressbtn =  dialogPage.getAddressButton();
 			addressbtn.click();
-			AssertDialog.checkModelIsClosedEsc(addDeliveryCloseModal , Keys.ESCAPE ,"model is not displayed");
+			assertDialog.checkModelIsClosedEsc(addDeliveryCloseModal , Keys.ESCAPE ,"model is not displayed");
 			
 		}
 		
 		@Test(priority = 4)
 		public void testFirstElementIsFocused() {
 		    
-		    WebElement addressbtn = DialogPage.GetAddressButton();
+		    WebElement addressbtn =  dialogPage.getAddressButton();
 		    addressbtn.click();
-		    WebElement street =DialogPage.EnterStreet();
+		    WebElement street = dialogPage.enterStreet();
 		    WebElement activeElement = driver.switchTo().activeElement();
-		    AssertDialog.checkFirstElementReceiveFocus(activeElement, street, "Focus is not on the first element.");
+		    assertDialog.checkFirstElementReceiveFocus(activeElement, street, "Focus is not on the first element.");
 
-		    WebElement cancelbtn = DialogPage.GetCancelBtn();
+		    WebElement cancelbtn =  dialogPage.getCancelBtn();
 		    cancelbtn.click();
 		}
 
@@ -79,23 +79,23 @@ public class DialogTest {
 		@Test(priority = 6)
 		public void testModelIsCloseCheckfocusIsInvolkingElement() throws InterruptedException {
 		   
-		    WebElement addressbtn = DialogPage.GetAddressButton();
+		    WebElement addressbtn =  dialogPage.getAddressButton();
 		    addressbtn.click();
-		    WebElement addDeliveryCloseModal = DialogPage.GetAddDelivaryModal();
+		    WebElement addDeliveryCloseModal =  dialogPage.getAddDelivaryModal();
 
-		    WebElement cancelbtn = DialogPage.GetCancelBtn();
+		    WebElement cancelbtn =  dialogPage.getCancelBtn();
 		    cancelbtn.click();
 
-	   AssertDialog.checkFocusIsInvokingElement(addressbtn,  null, "Model is not closed", driver);
+	   assertDialog.checkFocusIsInvokingElement(addressbtn,  null, "Model is not closed", driver);
 		
 		}
 		
 		@Test(priority = 5)
 		public void testFocusMaintainInModal() throws InterruptedException {
 		  
-		    WebElement addressbtn = DialogPage.GetAddressButton();
+		    WebElement addressbtn =  dialogPage.getAddressButton();
 		    addressbtn.click();
-		    WebElement modalId = DialogPage.GetAddDelivaryModal();
+		    WebElement modalId =  dialogPage.getAddDelivaryModal();
 		    String Model = modalId.getAttribute("id");
 
 		    String interactiveElementXPath = "//*[@id='" + Model
@@ -109,13 +109,13 @@ public class DialogTest {
 		        WebElement lastInteractiveElement = allInteractiveElements.get(elementCount - 1);
 
 		        
-		        AssertDialog.performFocusMaintenance(firstInteractiveElement, lastInteractiveElement, Keys.TAB, Keys.SHIFT, elementCount);
+		        assertDialog.performFocusMaintenance(firstInteractiveElement, lastInteractiveElement, Keys.TAB, Keys.SHIFT, elementCount);
 
 		    } else {
 		        System.out.println("No interactive elements found in the modal.");
 		    }
 
-		    WebElement cancelbtn = DialogPage.GetCancelBtn();
+		    WebElement cancelbtn =  dialogPage.getCancelBtn();
 		    cancelbtn.click();
 		}
 	
